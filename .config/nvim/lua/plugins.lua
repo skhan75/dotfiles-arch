@@ -17,14 +17,64 @@ end
 return require("packer").startup(function(use)
   use("wbthomason/packer.nvim") -- Packer manages itself
 
+  -- Speed up loading Lua modules in Neovim to improve startup time
+  use { "lewis6991/impatient.nvim" }
+
   -- Autopairs for automatic closing of brackets
-  use("windwp/nvim-autopairs")
+  use {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup({
+        check_ts = true,  -- Enable Treesitter integration
+        disable_filetype = { "TelescopePrompt", "vim" },  -- Disable in specific filetypes
+      })
+    end
+  }
+
+  use {
+    "romgrk/barbar.nvim",
+    requires = { "kyazdani42/nvim-web-devicons" }
+  }
 
   -- Treesitter for syntax highlighting and better code understanding
-  use({
+  use {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  })
+    run = function()
+      local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+      ts_update()
+    end,
+    config = function()
+      local ok, treesitter = pcall(require, 'nvim-treesitter.configs')
+      if ok then
+        treesitter.setup {
+          ensure_installed = { "c", "cpp", "lua", "java", "python", "javascript", "go", "markdown", "json", "yaml", "vim", "typescript", "elixir", "heex", "eex" },
+          sync_install = false,
+          ignore_install = { "" },
+          auto_install = true,
+
+          highlight = {
+            enable = true,
+            additional_vim_regex_highlighting = false,
+          },
+          autotage = {
+            enable = true
+          },
+          incremental_selection = {
+            enable = true,
+            keymaps = {
+              init_selection = "gnn",
+              node_incremental = "grn",
+              scope_incremental = "grc",
+              node_decremental = "grm",
+            },
+          },
+          indent = { enable = true },
+          modules = {},
+        }
+      end
+    end,
+  }
+
 
   -- Colorschemes
   use("aliqyan-21/darkvoid.nvim")
@@ -33,6 +83,7 @@ return require("packer").startup(function(use)
   use("ayu-theme/ayu-vim")
   use("akai54/2077.nvim")
   use("dracula/vim")
+  use("p00f/alabaster.nvim")
 
   -- Tokyo Night
   use {
@@ -369,6 +420,48 @@ return require("packer").startup(function(use)
       end
     end
   }
+
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
+
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {}
+    end
+  }
+
+  use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
+
+  use {
+    'ThePrimeagen/harpoon',
+    requires = { 'nvim-lua/plenary.nvim' } -- Harpoon depends on plenary.nvim
+  }
+
+  use {
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup({
+        filetypes = { "html", "javascript", "typescriptreact", "vue" }, -- Enable for these file types
+        skip_tags = { "area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr" }
+      })
+    end
+  }
+
+  -- Markdown
+  use {
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  }
+
+  -- Formatting
+  use { 'mhartington/formatter.nvim' }
 
 end)
 

@@ -1,6 +1,7 @@
 
 -- Set background and colorscheme
 vim.cmd("colorscheme forest_stream")
+vim.opt.termguicolors=true
 
 -- Transparency settings
 vim.cmd([[

@@ -1,25 +1,6 @@
---------------------------------------------------------------------------------
--- lua/user/keymaps.lua
---------------------------------------------------------------------------------
-
--- Ensure you have:
---   use "folke/which-key.nvim"
---   require("which-key").setup({})
 local wk = require("which-key")
 
-wk.register({
-
-  ------------------------------------------------------------------------------
-  -- Group placeholders (helps show headings in the which-key popup)
-  ------------------------------------------------------------------------------
-  { "<leader>f", group = "File/Find" },
-  { "<leader>g", group = "Git" },
-  { "<leader>b", group = "Buffers" },
-  { "<leader>h", group = "Harpoon" },
-  { "<leader>s", group = "Session" },
-  { "<leader>a", group = "Aerial" },
-  { "<leader>l", group = "LSP" },
-
+wk.add({
   ------------------------------------------------------------------------------
   -- FILE & TEXT SEARCHING (Telescope)
   ------------------------------------------------------------------------------
