@@ -3,7 +3,7 @@ local M = {}
 local cmd = vim.cmd
 local opt = vim.opt
 local g = vim.g
-local indent = 2
+local indent = 4
 
 local options = {
     -- General
@@ -18,6 +18,7 @@ local options = {
     visualbell = true, -- Flash the screen instead of beeping on errors
     scrolloff = 8,
     conceallevel = 0, -- So that `` is visible in markdown files
+    undofile = true,
     -- Set the behavior of tab
     tabstop = indent,
     shiftwidth = indent,

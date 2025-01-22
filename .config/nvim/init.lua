@@ -14,10 +14,18 @@ highlight EndOfBuffer guibg=NONE
 
 -- Automatically save changes to init.lua
 vim.cmd([[
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost lua/plugins.lua source <afile> | PackerSync
-augroup end
+    augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost lua/plugins.lua source <afile> | PackerSync
+    augroup end
 ]])
+
+vim.cmd [[
+    augroup MarkdownAutoFormat
+    autocmd!
+    autocmd FileType markdown call pencil#init({'wrap': 'soft'})
+    augroup END
+]]
+
 
 require("plugins")
