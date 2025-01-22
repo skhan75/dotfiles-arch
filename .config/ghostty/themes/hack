@@ -1,0 +1,25 @@
+# Custom Ghostty Theme converted from Kitty
+
+background = #01161b
+foreground = #66FFFF
+selection-background = #66FFFF
+selection-foreground = #01161b
+cursor-color = #66FFFF
+
+palette = 0=#01161b
+palette = 8=#01161b
+palette = 1=#007b82
+palette = 9=#007b82
+palette = 2=#028c94
+palette = 10=#028c94
+palette = 3=#039ca4
+palette = 11=#039ca4
+palette = 4=#04acb5
+palette = 12=#04acb5
+palette = 5=#05bbc5
+palette = 13=#05bbc5
+palette = 6=#06ccd7
+palette = 14=#06ccd7
+palette = 7=#a3b5b8
+palette = 15=#a3b5b8
+

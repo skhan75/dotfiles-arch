@@ -1,0 +1,15 @@
+theme = "hack"
+font-family = "FiraCode Nerd Font, JetBrainsMono Nerd Font, monospace"
+font-size = 11
+background-opacity = 0.98
+fullscreen = true
+window-decoration = false
+window-theme = auto
+clipboard-read = allow
+clipboard-write = allow
+clipboard-trim-trailing-spaces = true
+
+window-padding-x = 20
+window-padding-y = 15
+
+background-blur-radius = 20
